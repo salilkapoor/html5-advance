@@ -1,4 +1,7 @@
 import React, { useState, useEffect } from 'react'
+
+import { Posts } from './Posts'
+
 import './styles.css'
 
 export default function App() {
@@ -10,6 +13,7 @@ export default function App() {
     function handleMsg(event) {
       console.log(event)
       setMessage(event.data)
+      myWorker.terminate()
     }
 
     if ('Worker' in window) {
@@ -20,12 +24,13 @@ export default function App() {
     }
 
     return () => myWorker.removeEventListener('onmessage', handleMsg)
-  })
+  }, [])
 
   return (
     <div className="App">
       <h1>Dedicated Web Worker</h1>
-      <p>{message}</p>
+      <p>{message.message}</p>
+      <Posts data={message.data} />
     </div>
   )
 }
