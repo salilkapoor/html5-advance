@@ -1,11 +1,16 @@
-import React from "react";
-import "./styles.css";
+import React from 'react'
+
+import { Video } from './Video'
+import { DragNDrop } from './DragNDrop'
+
+import './styles.css'
 
 export default function App() {
   return (
     <div className="App">
-      <h1>Hello CodeSandbox</h1>
-      <h2>Start editing to see some magic happen!</h2>
+      <h1>Advance HTML5 Components</h1>
+      <Video />
+      <DragNDrop />
     </div>
-  );
+  )
 }
