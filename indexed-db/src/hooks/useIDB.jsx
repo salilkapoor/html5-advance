@@ -2,13 +2,15 @@ import { openDB } from 'idb'
 
 const useIDB = function(tableName) {
   const openIDB = async () =>
-    await openDB('posts-store', '1', {
+    await openDB('posts-store', 3, {
       upgrade(db, oldVersion, newVersion, transaction) {
         if (oldVersion !== newVersion) {
+          if (!db.objectStoreNames.contains(tableName)) {
+            db.createObjectStore(tableName, {
+              keyPath: 'id'
+            })
+          }
           console.log('upgrade required')
-          db.createObjectStore(tableName, {
-            keyPath: 'id'
-          })
         }
       }
     })
