@@ -51,7 +51,6 @@ export function getPost() {
     let request = post.getAll()
     console.log(request)
     request.onsuccess = function() {
-      // (4)
       console.log('get from the store', request.result)
     }
 
